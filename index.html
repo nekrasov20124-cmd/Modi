@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система опросов</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Система опросов</h1>
+        <nav>
+            <button id="homeBtn">Главная</button>
+            <button id="createSurveyBtn">Создать опрос</button>
+            <button id="createTestBtn">Создать тест</button>
+            <button id="vipBtn">VIP функции</button>
+            <div class="theme-toggle">
+                <button id="themeToggle" class="theme-btn">
+                    <span id="themeIcon">🌙</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    
+    <main id="app">
+        <div id="surveyList">
+            <div class="form-header">
+                <h2>Доступные опросы</h2>
+            </div>
+            <div id="surveysContainer">
+                <!-- Опросы будут отображаться здесь -->
+            </div>
+        </div>
+        
+        <!-- Форма VIP функций -->
+        <div id="vipForm" style="display: none;">
+            <div class="form-header">
+                <h2>VIP функции</h2>
+            </div>
+            <p>Активируйте VIP статус для создания опросов с большим количеством вопросов (до 100)</p>
+            <div>
+                <label for="vipToken">VIP токен:</label>
+                <input type="password" id="vipToken" placeholder="Введите ваш VIP токен">
+            </div>
+            <button id="activateVipBtn" class="btn btn-primary">Активировать VIP</button>
+            <button id="backFromVipBtn" class="btn btn-outline">Назад</button>
+        </div>
+        
+        <div id="createSurveyForm" style="display: none;">
+            <div class="form-header">
+                <h2>Создать новый опрос</h2>
+                <div id="vipStatusIndicator"></div>
+            </div>
+            <div id="questionLimitInfo">
+                <p id="limitText">Каждый опрос должен содержать ровно 10 вопросов</p>
+                <p id="vipInfo" style="display: none; color: #4ade80; font-weight: bold;">VIP пользователь: Можно создать опрос с 10-100 вопросами</p>
+            </div>
+            <form id="newSurveyForm">
+                <div>
+                    <label for="surveyTitle">Название опроса:</label>
+                    <input type="text" id="surveyTitle" required placeholder="Введите название опроса">
+                </div>
+                <div>
+                    <label for="surveyDescription">Описание опроса:</label>
+                    <textarea id="surveyDescription" placeholder="Введите описание опроса"></textarea>
+                </div>
+                <div>
+                    <label for="questionCount">Количество вопросов (10-100):</label>
+                    <input type="number" id="questionCount" min="10" max="100" value="10">
+                </div>
+                <div id="questionsContainer">
+                    <div class="question-header">
+                        <h3>Вопросы</h3>
+                    </div>
+                    <div class="question">
+                        <div class="question-type">
+                            <input type="text" class="questionText" placeholder="Введите вопрос" required>
+                            <select class="questionType">
+                                <option value="single">Один ответ</option>
+                                <option value="multiple">Несколько ответов</option>
+                                <option value="text">Текстовый ответ</option>
+                            </select>
+                        </div>
+                        <div class="answers">
+                            <div class="answerOption">
+                                <input type="text" class="answerOption" placeholder="Вариант ответа">
+                            </div>
+                            <button type="button" class="btn btn-outline addAnswer">Добавить вариант</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="addQuestion" class="btn btn-outline">Добавить вопрос</button>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Создать опрос</button>
+                    <button type="button" id="cancelSurveyBtn" class="btn btn-outline">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,736 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --accent-color: #4cc9f0;
+    --success-color: #4ade80;
+    --danger-color: #f87171;
+    --warning-color: #fbbf24;
+    --dark-color: #1e293b;
+    --light-color: #f8fafc;
+    --gray-color: #94a3b8;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    
+    /* Светлая тема по умолчанию */
+    --bg-color: #f0f4f8;
+    --bg-gradient-start: #f0f4f8;
+    --bg-gradient-end: #e2e8f0;
+    --card-bg: white;
+    --text-color: #1e293b;
+    --border-color: rgba(0, 0, 0, 0.05);
+    --input-bg: white;
+    --input-border: #cbd5e1;
+    --header-bg-start: #4361ee;
+    --header-bg-end: #3f37c9;
+}
+
+[data-theme="dark"] {
+    --bg-color: #0f172a;
+    --bg-gradient-start: #0f172a;
+    --bg-gradient-end: #1e293b;
+    --card-bg: #1e293b;
+    --text-color: #f1f5f9;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --input-bg: #334155;
+    --input-border: #475569;
+    --header-bg-start: #1e293b;
+    --header-bg-end: #0f172a;
+    --gray-color: #94a3b8;
+    --dark-color: #f1f5f9;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    min-height: 100vh;
+    padding-bottom: 2rem;
+}
+
+header {
+    background: linear-gradient(135deg, var(--header-bg-start) 0%, var(--header-bg-end) 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    box-shadow: var(--box-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+nav button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+nav button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle {
+    margin-left: auto;
+}
+
+.theme-btn {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.theme-btn:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-2px);
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+/* Стили для списка опросов */
+#surveysContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.survey-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.survey-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.survey-card h3 {
+    margin-bottom: 0.8rem;
+    color: var(--text-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.test-badge {
+    background-color: var(--warning-color);
+    color: var(--dark-color);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.survey-card p {
+    margin-bottom: 1.2rem;
+    color: var(--gray-color);
+}
+
+.survey-card .stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--gray-color);
+}
+
+.survey-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+    border: none;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-disabled {
+    background-color: var(--gray-color);
+    cursor: not-allowed;
+}
+
+.btn-disabled:hover {
+    background-color: var(--gray-color);
+    transform: none;
+}
+
+/* Стили для формы VIP функций */
+#vipForm {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid var(--border-color);
+}
+
+#vipForm h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+#vipForm p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* Стили для формы создания теста */
+#createTestForm {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#createTestForm p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.questions-editor {
+    background: var(--input-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 1.5rem 0;
+}
+
+.questions-editor h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.question-editor {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.question-editor:hover {
+    background: var(--input-bg);
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.question-header h4 {
+    margin: 0;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+input[type="text"], input[type="password"], input[type="number"], textarea, select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 0.5rem;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.answers-editor {
+    margin-top: 1rem;
+}
+
+.answers-editor label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.answer-item {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.answer-item input {
+    flex-grow: 1;
+}
+
+/* Стили для формы создания опроса */
+#createSurveyForm {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-header h2 {
+    margin: 0;
+    color: var(--text-color);
+}
+
+#createSurveyForm p {
+    color: var(--danger-color);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(248, 113, 113, 0.1);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--danger-color);
+}
+
+#createSurveyForm #vipInfo {
+    background-color: rgba(74, 222, 128, 0.1);
+    border-left: 4px solid var(--success-color);
+    color: var(--text-color);
+}
+
+#createSurveyForm div {
+    margin-bottom: 1.5rem;
+}
+
+.question {
+    background: var(--input-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.question:hover {
+    background: var(--card-bg);
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.question-header h4 {
+    margin: 0;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.question-type {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.question-type input {
+    flex-grow: 1;
+}
+
+.answers {
+    margin-top: 1rem;
+}
+
+.answerOption {
+    margin-bottom: 0.8rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.answerOption input {
+    flex-grow: 1;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Стили для страницы опроса */
+#surveyPage {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+}
+
+.survey-intro {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.survey-intro h2 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.question-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.question-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.question-item h3 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.options {
+    margin-top: 1rem;
+}
+
+.option {
+    margin-bottom: 0.8rem;
+    padding: 0.8rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.option:hover {
+    background-color: var(--input-bg);
+}
+
+.option input[type="checkbox"],
+.option input[type="radio"] {
+    margin-right: 0.8rem;
+    transform: scale(1.2);
+}
+
+.text-answer {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    min-height: 120px;
+    resize: vertical;
+    transition: var(--transition);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+.text-answer:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.survey-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Стили для страницы результатов */
+#resultsPage {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+}
+
+.results-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.results-header h2 {
+    color: var(--text-color);
+}
+
+.result-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.result-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.result-item h3 {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.text-responses p {
+    padding: 1rem;
+    background-color: var(--input-bg);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.bar-chart {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.bar-chart:hover {
+    background-color: var(--input-bg);
+}
+
+.bar-label {
+    width: 200px;
+    text-align: left;
+    padding-right: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.bar-container {
+    flex-grow: 1;
+    height: 24px;
+    background-color: var(--input-border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    border-radius: 12px;
+    transition: width 1s ease-in-out;
+}
+
+.bar-text {
+    width: 80px;
+    text-align: left;
+    padding-left: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.response-count {
+    font-size: 0.9rem;
+    color: var(--gray-color);
+    margin-top: 0.5rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    nav {
+        flex-direction: column;
+    }
+    
+    nav button {
+        width: 100%;
+    }
+    
+    main {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+    
+    #surveysContainer {
+        grid-template-columns: 1fr;
+    }
+    
+    .survey-card, #vipForm, #createTestForm, #createSurveyForm, #surveyPage, #resultsPage {
+        padding: 1.5rem;
+    }
+    
+    .bar-label {
+        width: 120px;
+    }
+    
+    .bar-text {
+        width: 60px;
+    }
+    
+    .form-actions, .survey-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .question-type {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .answer-item {
+        flex-direction: column;
+    }
+}
